@@ -1,0 +1,106 @@
+/* Jost Black */
+@font-face {
+  font-family: "Jost ExtraLight";
+  font-weight: bold;
+  src: url("/fonts/JOST/Jost-ExtraLight.ttf") format("truetype");
+}
+
+/* Jost */
+@font-face {
+  font-family: "Jost";
+  font-weight: normal;
+  src: url("/fonts/JOST/Jost-Light.ttf") format("truetype");
+}
+
+/* Kiona */
+@font-face {
+  font-family: "Kiona Regular";
+  font-weight: normal;
+  src: url("/fonts/KIONA/Kiona-Regular.ttf") format("truetype");
+}
+
+/* Poppins */
+@font-face {
+  font-family: "Poppins";
+  font-weight: normal;
+  src: url("fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+
+:global(:root) {
+  --color-foreground: #000;
+  --color-outline: #243959;
+  --color-highlight-1: #7181a3;
+  --color-highlight-2: #48505d;
+  --color-background: #f4f4f4; // #f1e9e4
+  --color-background-highlight: #e1d3c4;
+
+  --font-title: "Kiona Regular", serif;
+  --font-subtitle: "Jost ExtraLight", serif;
+  --font-paragraph: "Jost", sans-serif;
+  --font-extra: "Poppins", sans-serif;
+
+  --transition-short-duration: 1s;
+  --transition-shortest-duration: .3s;
+
+  --ham-size: calc(clamp(100rem, 30vw, 200rem) / 4);
+}
+
+// Set the width and color of the scrollbar
+:global(::-webkit-scrollbar) {
+  width: 5rem;
+  height: 0;
+}
+:global(::-webkit-scrollbar-track) {
+  background: var(--color-background);
+}
+:global(::-webkit-scrollbar-thumb) {
+  background: var(--color-foreground);
+  border-radius: 5rem;
+}
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: var(--color-outline);
+}
+
+:global(body) {
+  background: var(--color-foreground);
+}
+
+:global(*) {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+:global(.title) {
+  overflow: hidden;
+}
+
+:global(.title h1) {
+  font-family: var(--font-title);
+  font-size: clamp(30rem, 15vw, 130rem);
+  color: var(--color-foreground);
+  position: relative;
+  top: 0;
+  transform: rotate(0deg) skew(0deg);
+}
+
+:global(h2) {
+  font-size: clamp(20rem, 5vw, 24rem);
+}
+
+:global(h2),
+:global(h3) {
+  font-family: var(--font-subtitle);
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 7rem;
+  margin-bottom: 20rem;
+  line-height: 2;
+  color: var(--color-foreground);
+}
+
+:global(p) {
+  font-family: var(--font-paragraph);
+  padding-bottom: 10rem;
+  line-height: 1.5;
+  color: var(--color-foreground);
+}
