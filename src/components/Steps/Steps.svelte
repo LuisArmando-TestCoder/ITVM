@@ -1,24 +1,9 @@
 <script lang="ts">
-  import { formErrors } from "../ModalSchedule/ScheduleSteps/formStore";
-  import { derived, get } from "svelte/store";
-
   export let steps: Array<ConstructorOfATypedSvelteComponent>;
   let currentStep: number = 0;
 
-  // Derived store to track if the form is valid (no errors)
-  const isFormValid = () => {
-    const errorsByIndex = [["name", "id", "email", "phone"], ["description"]];
-    // console.log(errorsByIndex, $formErrors, currentStep);
-
-    return Object.entries($formErrors)
-      .filter(([key, value]) => {
-        return errorsByIndex[currentStep]?.indexOf(key) + 1 && value;
-      })
-      .every((error) => error === "");
-  };
-
   function nextStep() {
-    if (isFormValid() && currentStep < steps.length - 1) {
+    if (currentStep < steps.length - 1) {
       currentStep++;
     }
   }
