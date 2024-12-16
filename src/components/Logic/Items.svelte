@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { ChangeEventHandler } from "svelte/elements";
-    import type { Inventory, Item, User } from "./types";
+    import type { Inventory, Item, State, User } from "./types";
     import { onMount } from "svelte";
-    import { inventory, users } from "./Data";
+    import { inventory, states, users } from "./Data";
     import { get, writable, type Writable } from "svelte/store";
     import changeDisplayedObjects from "./changeDisplayedObjects";
     import toggleObjects from "./toggleObjects";
@@ -29,7 +29,7 @@
         const result = moveItem({
             itemId: $takenItem.id,
             movementType: "in",
-            state: $takenItem.state,
+            state: $takenItem.movements.slice(-1)[0].state,
             userId: $takenUser?.id,
         });
 
@@ -38,6 +38,8 @@
 
             return;
         }
+
+        errorDisclaimer.set();
 
         forceReRender();
     }
@@ -62,6 +64,35 @@
 
     function getElementById(elements: Item[], elementId: string): Item {
         return elements.find(({ id }) => elementId === id) as Item;
+    }
+
+    function handleItemStateChange({
+        event,
+        itemId,
+        userId,
+        movementIndex,
+    }: {
+        event: Event;
+        itemId: string;
+        userId: string;
+        movementIndex: number;
+    }) {
+        const result = moveItem({
+            itemId,
+            state: (event.target as HTMLSelectElement)!.value as State,
+            userId,
+            movementIndex,
+        });
+
+        if (result instanceof Error) {
+            errorDisclaimer.set(result);
+
+            return;
+        }
+
+        errorDisclaimer.set();
+
+        forceReRender();
     }
 </script>
 
@@ -97,9 +128,6 @@
                     }}
                 >
                     <b class="objects--list-item-name">{displayedItem.name}</b>
-                    <span class="objects--special-copy"
-                        >({displayedItem.state})</span
-                    >
                     {@html (() => {
                         const user = $users.find(({ currentItemsIds }) =>
                             currentItemsIds.find(
@@ -110,7 +138,7 @@
                         return user?.name
                             ? ` | Currently being witheld by ${
                                   user.name
-                              }, id <strong class="objects--special">${
+                              }, id <strong class="objects--special-copy">${
                                   user.id
                               }</strong>`
                             : "";
@@ -174,7 +202,38 @@
                                                 {adjustIsoDateByGmt(
                                                     movement.time,
                                                     -6,
-                                                )}
+                                                )}, in a
+                                                <select
+                                                    on:click|stopPropagation
+                                                    on:change={(event) =>
+                                                        handleItemStateChange({
+                                                            event,
+                                                            itemId: displayedItem.id,
+                                                            userId: movement.userId,
+                                                            movementIndex:
+                                                                getElementById(
+                                                                    $inventory.items,
+                                                                    displayedItem.id,
+                                                                ).movements.findIndex(
+                                                                    (
+                                                                        currentMovement,
+                                                                    ) =>
+                                                                        currentMovement ===
+                                                                        movement,
+                                                                ),
+                                                        })}
+                                                    class="objects--special"
+                                                    bind:value={movement.state}
+                                                >
+                                                    {#each states as value}
+                                                        <option
+                                                            {value}
+                                                            selected={value ===
+                                                                movement.state}
+                                                            >{value}</option
+                                                        >
+                                                    {/each}
+                                                </select> state
                                             </li>
                                         {/each}
                                     </ul>

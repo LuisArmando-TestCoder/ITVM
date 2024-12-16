@@ -30,7 +30,7 @@
         const result = moveItem({
             itemId: $takenItem.id,
             movementType: "out",
-            state: $takenItem.state,
+            state: $takenItem.movements.slice(-1)[0]?.state || $takenItem.state,
             userId: $takenUser?.id,
         });
 
@@ -39,6 +39,8 @@
 
             return;
         }
+
+        errorDisclaimer.set();
 
         forceReRender();
     }
@@ -89,7 +91,9 @@
                     <b class="objects--list-item-name">{displayedUser.name}</b>
                     {#if getElementById($users, displayedUser.id).currentItemsIds.length}
                         <span class="objects--special-copy"
-                            >({getElementById($users, displayedUser.id).currentItemsIds.length} items in possesion)</span
+                            >({
+                                getElementById($users, displayedUser.id).currentItemsIds.length
+                            } item{getElementById($users, displayedUser.id).currentItemsIds.length -1 ? "s" : ""} in possesion)</span
                         >
                     {/if}
                     <div

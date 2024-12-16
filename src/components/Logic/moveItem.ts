@@ -35,12 +35,12 @@ export default function moveItem({
     movementIndex = null,
 }: {
     itemId: string;
-    movementType: MovementType;
+    movementType?: MovementType; // optional when there is an index movement
     state: State;
     movementPrice?: number;
     inventory?: Inventory;
     users?: User[];
-    userId?: string;
+    userId: string;
     movementIndex?: number | null;
 }) {
     const errors = {
@@ -67,14 +67,16 @@ export default function moveItem({
 
     const { user, item } = validationResult;
 
-    user.currentItemsIds = updateCurrentItemsIds(user.currentItemsIds, item.id, movementType);
+    if (movementType) {
+        user.currentItemsIds = updateCurrentItemsIds(user.currentItemsIds, item.id, movementType);
+    }
 
-    const movement = createMovement(userId, movementType, state, movementPrice);
+    const movement = createMovement(userId, movementType as MovementType, state, movementPrice);
 
     if (isValidMovementIndex(movementIndex, item.movements.length)) {
-        updateMovement(item, movementIndex as number, movement);
+        updateMovement(item, movementIndex as number, { ...item.movements[movementIndex as number], state });
     } else {
-        addMovement(item, movement);
+        addMovement(item, { ...movement, state: item.movements.slice(-1)[0]?.state || movement.state });
     }
 
     takenItem.set(item);
@@ -105,11 +107,21 @@ function createMovement(
 
 function updateMovement(item: Item, movementIndex: number, updatedMovement: Movement) {
     const { time: previousTime } = item.movements[movementIndex];
+
     item.movements[movementIndex] = { ...updatedMovement, time: previousTime };
+
+    if (movementIndex === item.movements.length - 1) {
+        console.log("is getting here?", item.state, updatedMovement.state)
+        item.state = updatedMovement.state;
+
+        console.log("is getting here?", item, updatedMovement)
+
+    }
 }
 
 function addMovement(item: Item, newMovement: Movement) {
     item.movements = [...item.movements, newMovement];
+    item.state = newMovement.state;
 }
 
 function isValidMovementIndex(index: number | null, length: number): boolean {
@@ -137,7 +149,7 @@ function validateMoveItem({
 }: {
     userId: string;
     itemId: string;
-    movementType: MovementType;
+    movementType?: MovementType;
     movementPrice: number;
     users: User[];
     inventory: Inventory;
@@ -171,7 +183,7 @@ function validateMoveItem({
         return movementValidationError;
     }
 
-    if (!["in", "out"].includes(movementType)) {
+    if (movementType && !["in", "out"].includes(movementType)) {
         return new Error(errors.INVALID_MOVEMENT_TYPE);
     }
 
@@ -190,7 +202,7 @@ function validateMovementUpdate({
     users,
     inventory,
 }: {
-    movementType: MovementType;
+    movementType?: MovementType;
     user: User;
     itemId: string;
     itemName: string;
@@ -213,7 +225,7 @@ function validateMovementUpdate({
 
         if (currentPossessor) {
             const possessorDetails = `${currentPossessor.name} with the id ${currentPossessor.id}`;
-    
+
             return new Error(
                 `User ${user.name} with the id ${user.id}, doesn't have an item with the id ${itemId}.
                 \nThis item is in possession of: ${possessorDetails}`
