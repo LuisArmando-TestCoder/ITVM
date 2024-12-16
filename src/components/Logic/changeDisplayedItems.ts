@@ -16,25 +16,7 @@ export default function changeDisplayedObjects({
 
         listToChange.set(
             listToLookUp.filter((item) => {
-                const values = elementsToLookInto.map((element) => {
-                    const children = element.split(".");
-
-                    // console.log(children)
-
-                    // The object shape can be any but not the element to compare
-                    const getChild = (
-                        children: string[],
-                        object: any,
-                    ): string => {
-                        const firstChild = children.shift() as string;
-
-                        return typeof object[firstChild] === "string"
-                            ? object[firstChild]
-                            : getChild(children, object[firstChild]);
-                    };
-
-                    return getChild(children, item);
-                });
+                const values = elementsToLookInto.map((element) => (item[element]));
 
                 return values.some(data => (
                     data.toLowerCase().includes(value)
