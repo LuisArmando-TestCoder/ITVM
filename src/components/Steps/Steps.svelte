@@ -143,7 +143,7 @@
     width: 100%;
     border-radius: 5rem;
     transition: var(--transition-shortest-duration);
-    background: var(--color-background-highlight);
+    background: var(--color-background-outline);
 
     &.true {
       background: var(--color-outline);

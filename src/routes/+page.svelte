@@ -4,8 +4,10 @@
   import Notification from "../components/Notification/Notification.svelte";
   import ShaderToy from "../components/ShaderToy/ShaderToy.svelte";
   import OShader from "../components/ShaderToy/O.shader";
+    import Logic from "../components/Logic/Logic.svelte";
 </script>
 
+<Logic/>
 <!-- <Notification>
   <ShaderToy shader={OShader} iChannel0={'./t1.jpg'} iChannel1={'./t1.jpg'} />
 </Notification> -->

@@ -27,12 +27,9 @@
 }
 
 :global(:root) {
-  --color-foreground: #000;
-  --color-outline: #243959;
-  --color-highlight-1: #7181a3;
-  --color-highlight-2: #48505d;
-  --color-background: #f4f4f4; // #f1e9e4
-  --color-background-highlight: #e1d3c4;
+  --color-foreground: #181818;
+  --color-outline: #ccff0d;
+  --color-background: #ffffff; // #f1e9e4
 
   --font-title: "Kiona Regular", serif;
   --font-subtitle: "Jost ExtraLight", serif;
