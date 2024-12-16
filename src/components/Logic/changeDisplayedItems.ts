@@ -9,7 +9,7 @@ export default function changeDisplayedObjects({
     inputElement: HTMLInputElement;
     listToChange: Writable<any[]>;
     listToLookUp: any[];
-    elementsToLookInto: string[]; // [ "name", "id", "movements.state" ]
+    elementsToLookInto: string[]; // [ "name", "id"]
 }) {
     return () => {
         const value = inputElement.value.toLowerCase().trim();
