@@ -3,7 +3,7 @@ import type { Inventory, User } from "./types";
 
 export const states = ["new", "consumed", "fixed", "broken"] as const;
 
-export const categories = ["0", "1", "2"] as const;
+export const categories = ["Tool", "Electronic", "Education"] as const;
 
 export const users = writable<User[]>([
     {
@@ -16,7 +16,7 @@ export const users = writable<User[]>([
         currentItemsIds: []
     },
     {
-        name: "User-1",
+        name: "Norman",
         id: "ff0856f6-6360-4d77-8f66-f25d407a937e",
         userType: {
             name: "admin",
@@ -57,7 +57,7 @@ export const inventory = writable<Inventory>({
     id: "inventory-001",
     items: [
         {
-            category: "0", // Example category
+            category: categories[1], // Example category
             name: "Laptop",
             id: "e28133bc-d4cb-4771-a27b-86901ea61d9c",
             price: 0, // Borrowed item
@@ -65,7 +65,7 @@ export const inventory = writable<Inventory>({
             movements: []
         },
         {
-            category: "1", // Example category
+            category: categories[1], // Example category
             name: "Projector",
             id: "461cb688-ce67-4bf0-be82-be57ae324723",
             price: 0, // Borrowed item
@@ -73,7 +73,7 @@ export const inventory = writable<Inventory>({
             movements: []
         },
         {
-            category: "2", // Example category
+            category: categories[1], // Example category
             name: "Camera",
             id: "d3bd4f28-b870-46bb-a3a2-9f545546a224",
             price: 0, // Borrowed item
@@ -81,7 +81,7 @@ export const inventory = writable<Inventory>({
             movements: []
         },
         {
-            category: "1",
+            category: categories[2],
             name: "Whiteboard",
             id: "f949b592-711f-430e-8223-43025f967c33",
             price: 0, // Borrowed item

@@ -22,7 +22,7 @@ import {
     // states,
 } from "./Data";
 import { get } from "svelte/store";
-import { selectedItem } from "./store";
+import { takenItem } from "./store";
 
 export default function moveItem({
     itemId,
@@ -40,7 +40,7 @@ export default function moveItem({
     movementPrice?: number;
     inventory?: Inventory;
     users?: User[];
-    userId: string;
+    userId?: string;
     movementIndex?: number | null;
 }) {
     const errors = {
@@ -77,7 +77,7 @@ export default function moveItem({
         addMovement(item, movement);
     }
 
-    selectedItem.set(item);
+    takenItem.set(item);
 
     return { inventory, movement, users };
 }

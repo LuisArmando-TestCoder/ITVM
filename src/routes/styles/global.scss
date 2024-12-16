@@ -66,38 +66,3 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
-
-:global(.title) {
-  overflow: hidden;
-}
-
-:global(.title h1) {
-  font-family: var(--font-title);
-  font-size: clamp(30rem, 15vw, 130rem);
-  color: var(--color-foreground);
-  position: relative;
-  top: 0;
-  transform: rotate(0deg) skew(0deg);
-}
-
-:global(h2) {
-  font-size: clamp(20rem, 5vw, 24rem);
-}
-
-:global(h2),
-:global(h3) {
-  font-family: var(--font-subtitle);
-  font-weight: 100;
-  text-transform: uppercase;
-  letter-spacing: 7rem;
-  margin-bottom: 20rem;
-  line-height: 2;
-  color: var(--color-foreground);
-}
-
-:global(p) {
-  font-family: var(--font-paragraph);
-  padding-bottom: 10rem;
-  line-height: 1.5;
-  color: var(--color-foreground);
-}

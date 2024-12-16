@@ -1,0 +1,98 @@
+.objects {
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px -3.5px var(--color-background);
+    font-family: var(--font-subtitle);
+
+    input {
+        color: var(--color-foreground);
+        background: var(--color-background);
+        border: 0;
+        font-family: var(--font-subtitle);
+        padding: 10px 25px;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 50px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        filter:saturate(1.25);
+    }
+
+    :not(li[class="objects--list-item"]) {
+        line-height: 2.5;
+    }
+
+    &--list {
+        padding: 5px 0;
+        border-radius: 7.5px;
+        background: var(--color-background);
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    &--list-item {
+        margin: 5px;
+        padding: 25px;
+        border-radius: 10px;
+        background: var(--color-foreground);
+        box-shadow: 0 0 10px 0px var(--color-foreground);
+    }
+
+    .secondary .objects--list-item {
+        box-shadow: 0 0 10px 0px var(--color-outline);
+    }
+
+    &--special-copy {
+        color: var(--color-outline);
+    }
+
+    &--special {
+        color: var(--color-foreground);
+        background: var(--color-outline);
+        padding: 5px 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px -3.5px var(--color-background);
+    }
+
+    &--info {
+        margin-top: 25px;
+    }
+
+    .false {
+        height: 0px;
+        margin: 0;
+        transition: .25s;
+        overflow: hidden;
+        opacity: 0;
+
+        * {
+            height: 0px;
+            margin: 0;
+            transition: .25s;
+            overflow: hidden;
+            opacity: 0;
+        }
+    }
+
+    .true {
+        height: 100%;
+        transition: .5s;
+        margin-top: 25px;
+        opacity: 1;
+
+        * {
+            height: auto;
+            transition: .25s;
+            opacity: 1;
+        }
+    }
+
+    .no-shadow {
+        box-shadow: none !important;
+        padding: 0;
+    }
+}
