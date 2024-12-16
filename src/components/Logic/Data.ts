@@ -70,15 +70,7 @@ export const inventory = writable<Inventory>({
             id: "461cb688-ce67-4bf0-be82-be57ae324723",
             price: 0, // Borrowed item
             state: "consumed",
-            movements: [
-                {
-                    userId: "eurfjiejrf",
-                    state: "consumed",
-                    price: 34,
-                    time: "xd",
-                    type: "out"
-                }
-            ]
+            movements: []
         },
         {
             category: "2", // Example category
