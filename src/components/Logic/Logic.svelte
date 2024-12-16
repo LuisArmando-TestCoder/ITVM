@@ -5,7 +5,7 @@
 
 </script>
 
-<h1>User / Inventory Management</h1>
+<h1>ITVM / Inventory Management</h1>
 <p class="error">{$errorDisclaimer || ""}</p>
 <div class="container">
     <Items/>
