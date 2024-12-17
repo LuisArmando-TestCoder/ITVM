@@ -1,5 +1,4 @@
-import { get } from "svelte/store";
-import type { Inventory, State, User } from "./types";
+import type { Inventory, State, User } from "../../types";
 
 export type UserStateStats = {
     userId: string;

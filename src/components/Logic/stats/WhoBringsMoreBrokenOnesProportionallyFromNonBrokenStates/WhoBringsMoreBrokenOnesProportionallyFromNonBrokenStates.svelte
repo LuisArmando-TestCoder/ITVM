@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { Chart, registerables } from "chart.js";
-    import { whoBringsMoreStateProportionallyFromOtherStates } from "./stats";
-    import { inventory, users } from "./Data";
-    import type { UserStateStats } from "./stats";
+    import { whoBringsMoreStateProportionallyFromOtherStates } from "./WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates";
+    import { inventory, users } from "../../Data";
+    import type { UserStateStats } from "./WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates";
 
     // Register all Chart.js components
     Chart.register(...registerables);

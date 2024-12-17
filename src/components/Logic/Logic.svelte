@@ -2,8 +2,9 @@
     import Items from "./Items.svelte";
     import { errorDisclaimer } from "./store";
     import Users from "./Users.svelte";
-    import WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates from "./WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates.svelte";
+    import WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates from "./stats/WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates/WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates.svelte";
     import { inventory, users } from "./Data";
+    import MoreDemandedItems from "./stats/MoreDemandedItems/MoreDemandedItems.svelte";
 </script>
 
 <h1>ITVM / Inventory Management</h1>
@@ -13,6 +14,7 @@
     <Users />
 </div>
 <WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates />
+<MoreDemandedItems/>
 <style lang="scss">
     .error {
         color: red;
