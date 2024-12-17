@@ -1,8 +1,10 @@
-import type { categories, states } from "./Data";
+import type { categories, states, userTypeNames } from "./Data";
 
 export type State = typeof states[number];
 
 export type Category = typeof categories[number];
+
+export type UserTypeName = typeof userTypeNames[number];
 
 export type MovementType = "out" | "in";
 
@@ -39,7 +41,7 @@ export type OwnerPermissions = [...AdminPermissions, "delete"];
 export type UserPermissions = ViewerPermissions | EditorPermissions | AdminPermissions | OwnerPermissions;
 
 export type UserType = {
-    name: string;
+    name: UserTypeName;
     permissions: UserPermissions;
 };
 

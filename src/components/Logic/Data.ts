@@ -5,6 +5,8 @@ export const states = ["new", "consumed", "fixed", "broken"] as const;
 
 export const categories = ["Tool", "Electronic", "Education"] as const;
 
+export const userTypeNames = ["viewer", "editor", "admin", "owner"] as const;
+
 export const users = writable<User[]>([
     {
         name: "User-0",

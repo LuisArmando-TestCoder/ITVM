@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { ChangeEventHandler } from "svelte/elements";
-    import type { Item, User } from "./types";
+    import type { Item, User, UserTypeName } from "./types";
     import { onMount } from "svelte";
-    import { inventory, users } from "./Data";
+    import { inventory, users, userTypeNames } from "./Data";
     import { writable, type Writable } from "svelte/store";
     import changeDisplayedObjects from "./changeDisplayedObjects";
     import toggleObjects from "./toggleObjects";
@@ -57,6 +57,32 @@
     function getElementById(elements: User[], elementId: string): User {
         return elements.find(({ id }) => elementId === id) as User;
     }
+
+    // function handleUserStateChange({
+    //     userId,
+    //     event,
+    // }: {
+    //     userId: string;
+    //     event: { currentTarget: HTMLSelectElement };
+    // }) {
+    //     users.set(
+    //         $users.map((user) => {
+    //             const name = (
+    //                 user.id === userId
+    //                     ? event.currentTarget.value
+    //                     : user.userType.name
+    //             ) as UserTypeName;
+
+    //             return {
+    //                 ...user,
+    //                 userType: {
+    //                     ...user.userType,
+    //                     name,
+    //                 },
+    //             } as User;
+    //         }),
+    //     );
+    // }
 </script>
 
 <div class="objects">
@@ -87,13 +113,34 @@
                         toggleObjects(usersToggles, displayedUser.id);
                     }}
                 >
-                    <strong class="objects--special">{displayedUser.userType.name}</strong>
+                    <!-- <select
+                        on:click|stopPropagation
+                        on:change={(event) =>
+                            handleUserStateChange({
+                                userId: getElementById($users, displayedUser.id).id,
+                                event,
+                            })}
+                        class="objects--special"
+                    >
+                        {#each userTypeNames as value}
+                            <option
+                                {value}
+                                selected={value === displayedUser.userType.name}
+                                >{value}</option
+                            >
+                        {/each}
+                    </select> -->
+                    <strong class="objects--special">{getElementById($users, displayedUser.id).userType.name}</strong>
                     <b class="objects--list-item-name">{displayedUser.name}</b>
                     {#if getElementById($users, displayedUser.id).currentItemsIds.length}
                         <span class="objects--special-copy"
-                            >({
-                                getElementById($users, displayedUser.id).currentItemsIds.length
-                            } item{getElementById($users, displayedUser.id).currentItemsIds.length -1 ? "s" : ""} in possesion)</span
+                            >({getElementById($users, displayedUser.id)
+                                .currentItemsIds.length} item{getElementById(
+                                $users,
+                                displayedUser.id,
+                            ).currentItemsIds.length - 1
+                                ? "s"
+                                : ""} in possesion)</span
                         >
                     {/if}
                     <div
@@ -131,7 +178,8 @@
                                                         .name}</span
                                                 >
                                                 with the id
-                                                <strong class="objects--special-copy"
+                                                <strong
+                                                    class="objects--special-copy"
                                                     >{currentItemsId}</strong
                                                 >
                                             </li>
