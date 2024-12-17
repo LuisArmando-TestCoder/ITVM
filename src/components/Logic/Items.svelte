@@ -9,6 +9,7 @@
     import { errorDisclaimer, takenItem, takenUser } from "./store";
     import moveItem from "./moveItem";
     import forceReRender from "./forceReRender";
+    import CopyToClipboard from "./CopyToClipboard/CopyToClipboard.svelte";
 
     let inputElement: HTMLInputElement;
     let displayedItems = writable<Item[]>();
@@ -128,10 +129,13 @@
                     }}
                 >
                     <b class="objects--list-item-name">{displayedItem.name}</b>
-                    <span class="objects--special-copy">({getElementById(
-                        $inventory.items,
-                        displayedItem.id,
-                    ).state})</span>
+
+                    <span class="objects--special-copy"
+                        >(<CopyToClipboard
+                            >{getElementById($inventory.items, displayedItem.id)
+                                .state}</CopyToClipboard
+                        >)</span
+                    >
                     {@html (() => {
                         const user = $users.find(({ currentItemsIds }) =>
                             currentItemsIds.find(
@@ -140,13 +144,18 @@
                         );
 
                         return user?.name
-                            ? ` | Currently being witheld by ${
-                                  user.name
-                              }, id <strong class="objects--special-copy">${
-                                  user.id
-                              }</strong>`
+                            ? ` | Currently being witheld by ${user.name}, id`
                             : "";
                     })()}
+                    <strong class="objects--special-copy">
+                        <CopyToClipboard>
+                            {$users.find(({ currentItemsIds }) =>
+                                currentItemsIds.find(
+                                    (id) => id === displayedItem.id,
+                                ),
+                            )?.id || ""}
+                        </CopyToClipboard>
+                    </strong>
                     <div
                         class="objects--info {$itemsToggles[displayedItem.id]}"
                     >
@@ -154,20 +163,27 @@
                             <li class="objects--list-item no-shadow">
                                 <ul>
                                     <li>
-                                        ID: <strong class="objects--special-copy"
-                                            >{displayedItem.id}</strong
+                                        ID: <strong
+                                            class="objects--special-copy"
+                                            ><CopyToClipboard
+                                                >{displayedItem.id}</CopyToClipboard
+                                            ></strong
                                         >
                                     </li>
                                     <li>
                                         Category: <strong
                                             class="objects--special-copy"
-                                            >{displayedItem.category}</strong
+                                            ><CopyToClipboard
+                                                >{displayedItem.category}</CopyToClipboard
+                                            ></strong
                                         >
                                     </li>
                                     <li>
                                         Price: <strong
                                             class="objects--special-copy"
-                                            >${displayedItem.price}</strong
+                                            ><CopyToClipboard
+                                                >${displayedItem.price}</CopyToClipboard
+                                            ></strong
                                         >
                                     </li>
                                 </ul>
@@ -179,21 +195,31 @@
                                             <li>
                                                 <strong
                                                     class="objects--special-copy"
-                                                    >{$users.find(({ id }) => {
-                                                        return (
-                                                            id ===
-                                                            movement.userId
-                                                        );
-                                                    })?.name}</strong
+                                                    ><CopyToClipboard
+                                                        >{$users.find(
+                                                            ({ id }) => {
+                                                                return (
+                                                                    id ===
+                                                                    movement.userId
+                                                                );
+                                                            },
+                                                        )
+                                                            ?.name}</CopyToClipboard
+                                                    ></strong
                                                 >
                                                 with the id
-                                                <strong class="objects--special-copy"
-                                                    >{$users.find(({ id }) => {
-                                                        return (
-                                                            id ===
-                                                            movement.userId
-                                                        );
-                                                    })?.id}</strong
+                                                <strong
+                                                    class="objects--special-copy"
+                                                    ><CopyToClipboard
+                                                        >{$users.find(
+                                                            ({ id }) => {
+                                                                return (
+                                                                    id ===
+                                                                    movement.userId
+                                                                );
+                                                            },
+                                                        )?.id}</CopyToClipboard
+                                                    ></strong
                                                 >
                                                 {movement.type === "in"
                                                     ? "deposited"

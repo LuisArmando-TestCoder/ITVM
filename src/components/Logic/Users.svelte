@@ -10,6 +10,7 @@
     import { errorDisclaimer, takenItem, takenUser } from "./store";
     import Items from "./Items.svelte";
     import forceReRender from "./forceReRender";
+    import CopyToClipboard from "./CopyToClipboard/CopyToClipboard.svelte";
 
     let inputElement: HTMLInputElement;
     let displayedUsers = writable<User[]>();
@@ -130,19 +131,26 @@
                             >
                         {/each}
                     </select> -->
-                    <strong class="objects--special">{getElementById($users, displayedUser.id).userType.name}</strong>
-                    <b class="objects--list-item-name">{displayedUser.name}</b>
-                    {#if getElementById($users, displayedUser.id).currentItemsIds.length}
-                        <span class="objects--special-copy"
-                            >({getElementById($users, displayedUser.id)
-                                .currentItemsIds.length} item{getElementById(
-                                $users,
-                                displayedUser.id,
-                            ).currentItemsIds.length - 1
-                                ? "s"
-                                : ""} in possesion)</span
+                    <strong class="objects--special"
+                        >{getElementById($users, displayedUser.id).userType
+                            .name}</strong
+                    >
+                    <CopyToClipboard>
+                        <b class="objects--list-item-name"
+                            >{displayedUser.name}</b
                         >
-                    {/if}
+                        {#if getElementById($users, displayedUser.id).currentItemsIds.length}
+                            <span class="objects--special-copy"
+                                >({getElementById($users, displayedUser.id)
+                                    .currentItemsIds.length} item{getElementById(
+                                    $users,
+                                    displayedUser.id,
+                                ).currentItemsIds.length - 1
+                                    ? "s"
+                                    : ""} in possesion)</span
+                            >
+                        {/if}
+                    </CopyToClipboard>
                     <div
                         class="objects--info {$usersToggles[displayedUser.id]}"
                     >
@@ -152,7 +160,9 @@
                                     <li>
                                         ID: <strong
                                             class="objects--special-copy"
-                                            >{displayedUser.id}</strong
+                                            ><CopyToClipboard
+                                                >{displayedUser.id}</CopyToClipboard
+                                            ></strong
                                         >
                                     </li>
                                 </ul>
@@ -174,13 +184,18 @@
                                             >
                                                 <span
                                                     class="objects--special-copy"
-                                                    >{getItem(currentItemsId)
-                                                        .name}</span
+                                                    ><CopyToClipboard
+                                                        >{getItem(
+                                                            currentItemsId,
+                                                        ).name}</CopyToClipboard
+                                                    ></span
                                                 >
                                                 with the id
                                                 <strong
                                                     class="objects--special-copy"
-                                                    >{currentItemsId}</strong
+                                                    ><CopyToClipboard
+                                                        >{currentItemsId}</CopyToClipboard
+                                                    ></strong
                                                 >
                                             </li>
                                         {/each}

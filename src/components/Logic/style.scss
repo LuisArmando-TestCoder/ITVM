@@ -46,11 +46,11 @@
         box-shadow: 0 0 10px 0px var(--color-outline);
     }
 
-    &--special-copy {
+    :global(.objects--special-copy) {
         color: var(--color-outline);
     }
 
-    &--special {
+    :global(.objects--special) {
         color: var(--color-foreground);
         background: var(--color-outline);
         padding: 5px 10px;

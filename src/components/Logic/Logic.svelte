@@ -24,7 +24,7 @@
         font-family: var(--font-subtitle);
     }
 
-    :global(*) {
+    :global(*:not(span,strong)) {
         user-select: none;
         box-sizing: border-box;
         color: var(--color-background);
