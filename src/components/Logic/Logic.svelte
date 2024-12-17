@@ -13,8 +13,10 @@
     <Items />
     <Users />
 </div>
-<WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates />
-<MoreDemandedItems/>
+<div class="container">
+    <WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates />
+    <MoreDemandedItems/>
+</div>
 <style lang="scss">
     .error {
         color: red;

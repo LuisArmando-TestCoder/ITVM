@@ -64,8 +64,8 @@
                 {
                     label: "Demand (In Movements)",
                     data: inCounts,
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "#4caf50",
+                    backgroundColor: "#4caf5044",
                     borderWidth: 1,
                 },
             ],
