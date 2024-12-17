@@ -18,26 +18,24 @@ export function whoBringsMoreStateProportionallyFromOtherStates(state: State, in
     }));
 
     inventory.items.forEach((item) => {
-        if (item.movements.length > 2) {
-            item.movements.forEach((movement, index) => {
+        item.movements.forEach((movement, index) => {
 
-                if (movement.type === "out" || !index) return;
+            if (movement.type === "out" || !index) return;
 
-                // console.log(movement.type === "in", "here")
+            // console.log(movement.type === "in", "here")
 
-                const UserStateStats = userStateStats.find(({ userId }) => userId === movement.userId) as unknown as UserStateStats;
+            const UserStateStats = userStateStats.find(({ userId }) => userId === movement.userId) as unknown as UserStateStats;
 
-                UserStateStats.totalInMovements++;
+            UserStateStats.totalInMovements++;
 
-                const previousMovement = item.movements[index - 1];
+            const previousMovement = item.movements[index - 1];
 
-                if (movement.state === state && movement.state !== previousMovement.state) {
-                    UserStateStats.totalStateEntries++;
-                }
+            if (movement.state === state && movement.state !== previousMovement.state) {
+                UserStateStats.totalStateEntries++;
+            }
 
-                UserStateStats.entryProportion = UserStateStats.totalStateEntries / UserStateStats.totalInMovements;
-            });
-        }
+            UserStateStats.entryProportion = UserStateStats.totalStateEntries / UserStateStats.totalInMovements;
+        });
     });
 
     // console.log(userStateStats);
