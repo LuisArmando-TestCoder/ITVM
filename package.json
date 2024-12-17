@@ -33,6 +33,7 @@
 		"aos": "^2.3.4",
 		"autoprefixer": "^10.4.19",
 		"canvas-preset": "^3.3.8",
+		"chart.js": "^4.4.7",
 		"gapi-script": "^1.2.0",
 		"gsap": "^3.12.5",
 		"hls.js": "^1.5.17",

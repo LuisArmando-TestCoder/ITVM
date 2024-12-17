@@ -111,11 +111,7 @@ function updateMovement(item: Item, movementIndex: number, updatedMovement: Move
     item.movements[movementIndex] = { ...updatedMovement, time: previousTime };
 
     if (movementIndex === item.movements.length - 1) {
-        console.log("is getting here?", item.state, updatedMovement.state)
         item.state = updatedMovement.state;
-
-        console.log("is getting here?", item, updatedMovement)
-
     }
 }
 

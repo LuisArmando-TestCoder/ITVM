@@ -113,7 +113,7 @@
 
                             {#if getElementById($users, displayedUser.id).currentItemsIds.length}
                                 <li class="objects--list-item no-shadow">
-                                    <h4>Current items witholding</h4>
+                                    <h4>Current items withholding</h4>
                                     <ul class="secondary">
                                         {#each getElementById($users, displayedUser.id).currentItemsIds as currentItemsId}
                                             <li
@@ -131,8 +131,8 @@
                                                         .name}</span
                                                 >
                                                 with the id
-                                                <strong class="objects--special"
-                                                    >({currentItemsId})</strong
+                                                <strong class="objects--special-copy"
+                                                    >{currentItemsId}</strong
                                                 >
                                             </li>
                                         {/each}

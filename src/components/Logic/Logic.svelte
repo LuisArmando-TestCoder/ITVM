@@ -2,16 +2,17 @@
     import Items from "./Items.svelte";
     import { errorDisclaimer } from "./store";
     import Users from "./Users.svelte";
-
+    import WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates from "./WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates.svelte";
+    import { inventory, users } from "./Data";
 </script>
 
 <h1>ITVM / Inventory Management</h1>
 <p class="error">{$errorDisclaimer || ""}</p>
 <div class="container">
-    <Items/>
-    <Users/>
+    <Items />
+    <Users />
 </div>
-
+<WhoBringsMoreBrokenOnesProportionallyFromNonBrokenStates />
 <style lang="scss">
     .error {
         color: red;

@@ -150,7 +150,7 @@
                             <li class="objects--list-item no-shadow">
                                 <ul>
                                     <li>
-                                        ID: <strong class="objects--special"
+                                        ID: <strong class="objects--special-copy"
                                             >{displayedItem.id}</strong
                                         >
                                     </li>
@@ -183,7 +183,7 @@
                                                     })?.name}</strong
                                                 >
                                                 with the id
-                                                <strong class="objects--special"
+                                                <strong class="objects--special-copy"
                                                     >{$users.find(({ id }) => {
                                                         return (
                                                             id ===
