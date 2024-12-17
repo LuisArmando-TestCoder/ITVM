@@ -128,6 +128,10 @@
                     }}
                 >
                     <b class="objects--list-item-name">{displayedItem.name}</b>
+                    <span class="objects--special-copy">({getElementById(
+                        $inventory.items,
+                        displayedItem.id,
+                    ).state})</span>
                     {@html (() => {
                         const user = $users.find(({ currentItemsIds }) =>
                             currentItemsIds.find(
