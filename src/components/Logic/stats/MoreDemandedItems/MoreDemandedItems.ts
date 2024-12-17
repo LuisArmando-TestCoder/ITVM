@@ -1,17 +1,17 @@
 import type { Inventory, Item } from "../../types";
 
 export type ItemDemandStats = {
-    itemId: string;
-    itemName: string;
+    id: string;
+    name: string;
     totalInMovements: number;
 };
 
 export function getMoreDemandedItems(inventory: Inventory): ItemDemandStats[] {
-    const stats: ItemDemandStats[] = inventory.items.map((item: Item) => {
-        const inMovementsCount = item.movements.filter(mov => mov.type === "out").length;
+    const stats: ItemDemandStats[] = inventory.items.map(({ name, id, movements }: Item) => {
+        const inMovementsCount = movements.filter(mov => mov.type === "out").length;
         return {
-            itemId: item.id,
-            itemName: item.name,
+            id,
+            name,
             totalInMovements: inMovementsCount,
         };
     });

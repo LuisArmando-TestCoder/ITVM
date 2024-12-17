@@ -1,8 +1,8 @@
 import type { Inventory, State, User } from "../../types";
 
 export type UserStateStats = {
-    userId: string;
-    userName: string;
+    id: string;
+    name: string;
     totalInMovements: number;
     totalStateEntries: number;
     entryProportion: number;
@@ -10,8 +10,8 @@ export type UserStateStats = {
 
 export function whoBringsMoreStateProportionallyFromOtherStates(state: State, inventory: Inventory, users: User[]): UserStateStats[] {
     const userStateStats: UserStateStats[] = users.map(({ id, name }) => ({
-        userId: id,
-        userName: name,
+        id,
+        name,
         totalInMovements: 0,
         totalStateEntries: 0,
         entryProportion: 0,
@@ -24,7 +24,7 @@ export function whoBringsMoreStateProportionallyFromOtherStates(state: State, in
 
             // console.log(movement.type === "in", "here")
 
-            const UserStateStats = userStateStats.find(({ userId }) => userId === movement.userId) as unknown as UserStateStats;
+            const UserStateStats = userStateStats.find(({ id }) => id === movement.userId) as unknown as UserStateStats;
 
             UserStateStats.totalInMovements++;
 
