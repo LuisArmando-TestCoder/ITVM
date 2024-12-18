@@ -5,8 +5,8 @@
 </script>
 
 <Stat
-    xText="Items"
-    yText="More demanded items"
+    xText="Objetos"
+    yText="Demanda de objeto"
     dataCallback={() => getMoreDemandedItems($inventory)}
     HEXColor={"#4caf50"}
 />

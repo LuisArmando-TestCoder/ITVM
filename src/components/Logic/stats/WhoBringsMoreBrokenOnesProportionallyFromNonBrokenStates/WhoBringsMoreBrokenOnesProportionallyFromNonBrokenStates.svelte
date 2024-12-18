@@ -5,11 +5,11 @@
 </script>
 
 <Stat
-    xText="Users"
-    yText="Proportional Broken Items"
+    xText="Usuarios"
+    yText="Devolución dañada proporcional"
     dataCallback={() => {
         return whoBringsMoreStateProportionallyFromOtherStates(
-            "broken",
+            "dañado",
             $inventory,
             $users,
         );

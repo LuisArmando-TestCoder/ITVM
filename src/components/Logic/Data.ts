@@ -1,25 +1,34 @@
 import { writable } from "svelte/store";
 import type { Inventory, User } from "./types";
 
-export const states = ["new", "consumed", "fixed", "broken"] as const;
+export const states = ["nuevo", "regular", "dañado", "arreglado", "consumido", "desechado"] as const;
 
-export const categories = ["Tool", "Electronic", "Education"] as const;
+export const categories = ["Herramienta", "Electrónico", "Educación"] as const;
 
-export const userTypeNames = ["viewer", "editor", "admin", "owner"] as const;
+export const userTypeNames = ["estudiante", "editor", "admin", "profesor"] as const;
 
 export const users = writable<User[]>([
     {
-        name: "User-0",
-        id: "d65679e1-e8a4-46e7-a67a-e43c773b76e3",
+        name: "Vinicio",
+        id: "92f5c83d-7641-4d63-b9eb-c7bbf7e3a451",
         userType: {
-            name: "viewer",
+            name: "estudiante",
             permissions: ["read"]
         },
         currentItemsIds: []
     },
     {
-        name: "Norman",
-        id: "ff0856f6-6360-4d77-8f66-f25d407a937e",
+        name: "Steve",
+        id: "b1945b93-7a7e-4b3f-a917-1359d0fbb357",
+        userType: {
+            name: "editor",
+            permissions: ["read", "update"]
+        },
+        currentItemsIds: []
+    },
+    {
+        name: "Ary",
+        id: "34c19a8c-ec65-4a82-a74c-1b4f5718f00f",
         userType: {
             name: "admin",
             permissions: ["read", "update", "create"]
@@ -27,68 +36,171 @@ export const users = writable<User[]>([
         currentItemsIds: []
     },
     {
-        name: "User-2",
-        id: "94486d31-924f-474b-85f5-e3906378ea69",
+        name: "Colindres",
+        id: "a6c7a054-09b3-41f5-9c6e-63be5174b43f",
         userType: {
-            name: "owner",
+            name: "profesor",
             permissions: ["read", "update", "create", "delete"]
         },
         currentItemsIds: []
     },
     {
-        name: "User-3",
-        id: "d18112af-5c6c-4ff5-930c-614a69a62744",
+        name: "Carlos C",
+        id: "e85bc3a9-7e9b-468e-9cfa-4417f27c8af4",
         userType: {
-            name: "owner",
-            permissions: ["read", "update", "create", "delete"]
-        },
-        currentItemsIds: []
-    },
-    {
-        name: "User-4",
-        id: "4fb0a0db-b58b-41d6-b0eb-4d64febc01f7",
-        userType: {
-            name: "editor",
-            permissions: ["read", "update"]
+            name: "estudiante",
+            permissions: ["read"]
         },
         currentItemsIds: []
     }
 ]);
 
 export const inventory = writable<Inventory>({
-    id: "inventory-001",
-    items: [
+    "id": "inventory-001",
+    "items": [
         {
-            category: categories[1], // Example category
-            name: "Laptop",
-            id: "e28133bc-d4cb-4771-a27b-86901ea61d9c",
-            price: 0, // Borrowed item
-            state: "new",
-            movements: []
+            "category": "Herramienta",
+            "name": "Manguera para compresor",
+            "id": "e728a92b-947f-4cb3-b0b8-7549df451122",
+            "price": 25.0,
+            "state": "nuevo",
+            // "quantity": 2,
+            "movements": []
         },
         {
-            category: categories[1], // Example category
-            name: "Projector",
-            id: "461cb688-ce67-4bf0-be82-be57ae324723",
-            price: 0, // Borrowed item
-            state: "consumed",
-            movements: []
+            "category": "Herramienta",
+            "name": "Extensiones con luz",
+            "id": "cb05489b-d876-4d4b-893b-8c8e8a55ea48",
+            "price": 15.0,
+            "state": "nuevo",
+            // "quantity": 4,
+            "movements": []
         },
         {
-            category: categories[1], // Example category
-            name: "Camera",
-            id: "d3bd4f28-b870-46bb-a3a2-9f545546a224",
-            price: 0, // Borrowed item
-            state: "new",
-            movements: []
+            "category": "Herramienta",
+            "name": "Extensiones medianas",
+            "id": "4ebf7bd1-24c3-43f5-8f8a-4c5a41d3a4a2",
+            "price": 12.0,
+            "state": "nuevo",
+            // "quantity": 3,
+            "movements": []
         },
         {
-            category: categories[2],
-            name: "Whiteboard",
-            id: "f949b592-711f-430e-8223-43025f967c33",
-            price: 0, // Borrowed item
-            state: "fixed",
-            movements: []
+            "category": "Herramienta",
+            "name": "Prensas en C",
+            "id": "9bc437e8-5baf-4bd7-b9f3-1546896bb927",
+            "price": 30.0,
+            "state": "nuevo",
+            // "quantity": 4,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Engrasadora",
+            "id": "b45f55f3-0fd8-432c-bb65-b0cb2b32f22a",
+            "price": 50.0,
+            "state": "nuevo",
+            // "quantity": 1,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Juego de llaves de 10 piezas",
+            "id": "3bd6e21c-7dbf-4fc4-80f2-2c30567ed378",
+            "price": 40.0,
+            "state": "arreglado",
+            // "quantity": 2,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Caja con esmeril y taladro",
+            "id": "4c0fb5c3-3ef2-48dc-8122-8b3943d96b22",
+            "price": 120.0,
+            "state": "nuevo",
+            // "quantity": 1,
+            "movements": []
+        },
+        {
+            "category": "Electrónico",
+            "name": "Micrómetro 0-25 mm",
+            "id": "917ecf95-8252-44a4-bf12-cd63761d0f1f",
+            "price": 80.0,
+            "state": "nuevo",
+            // "quantity": 3,
+            "movements": []
+        },
+        {
+            "category": "Electrónico",
+            "name": "Tester o multímetro",
+            "id": "86d58b9d-c437-45a6-9b93-61a6e03f17f4",
+            "price": 40.0,
+            "state": "arreglado",
+            // "quantity": 5,
+            "movements": []
+        },
+        {
+            "category": "Electrónico",
+            "name": "Scanner automotriz",
+            "id": "84ec7e91-9988-45de-8d73-1a3c58f83124",
+            "price": 300.0,
+            "state": "nuevo",
+            // "quantity": 2,
+            "movements": []
+        },
+        {
+            "category": "Educación",
+            "name": "Pizarra blanca",
+            "id": "fb49d2b2-bfa3-4232-a9db-568d1f617634",
+            "price": 50.0,
+            "state": "arreglado",
+            // "quantity": 6,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Limas variadas",
+            "id": "33a5cc21-0f16-4b76-8f3c-b96e788d4a90",
+            "price": 8.0,
+            "state": "dañado",
+            // "quantity": 10,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Destornilladores planos y Phillips",
+            "id": "c091b7b1-d136-4d95-8b69-1d7a846c54d4",
+            "price": 20.0,
+            "state": "nuevo",
+            // "quantity": 12,
+            "movements": []
+        },
+        {
+            "category": "Electrónico",
+            "name": "Juego de brocas",
+            "id": "d6f0899a-57df-4ea7-95d4-56c813f2207f",
+            "price": 35.0,
+            "state": "arreglado",
+            // "quantity": 4,
+            "movements": []
+        },
+        {
+            "category": "Electrónico",
+            "name": "Protos board",
+            "id": "5e9c98c5-4f59-48cb-a33d-5a2bc70fbb7a",
+            "price": 25.0,
+            "state": "nuevo",
+            // "quantity": 15,
+            "movements": []
+        },
+        {
+            "category": "Herramienta",
+            "name": "Juego extractor de válvulas",
+            "id": "b12345fd-6f87-4b8a-a9fb-9ec0b6f83e29",
+            "price": 75.0,
+            "state": "nuevo",
+            // "quantity": 2,
+            "movements": []
         }
     ]
 });
