@@ -89,7 +89,7 @@
 <div class="objects">
     <div class="search">
         <input
-            placeholder="Look for users"
+            placeholder="Usuario a buscar (nombre, id, tipo)"
             type="text"
             bind:this={inputElement}
             on:input={changeDisplayedObjects({
@@ -141,13 +141,13 @@
                         >
                         {#if getElementById($users, displayedUser.id).currentItemsIds.length}
                             <span class="objects--special-copy"
-                                >({getElementById($users, displayedUser.id)
-                                    .currentItemsIds.length} item{getElementById(
+                                >(posee {getElementById($users, displayedUser.id)
+                                    .currentItemsIds.length} objeto{getElementById(
                                     $users,
                                     displayedUser.id,
                                 ).currentItemsIds.length - 1
                                     ? "s"
-                                    : ""} in possesion)</span
+                                    : ""})</span
                             >
                         {/if}
                     </CopyToClipboard>
@@ -158,7 +158,7 @@
                             <li class="objects--list-item no-shadow">
                                 <ul>
                                     <li>
-                                        ID: <strong
+                                        Identificación: <strong
                                             class="objects--special-copy"
                                             ><CopyToClipboard
                                                 >{displayedUser.id}</CopyToClipboard
@@ -170,7 +170,7 @@
 
                             {#if getElementById($users, displayedUser.id).currentItemsIds.length}
                                 <li class="objects--list-item no-shadow">
-                                    <h4>Current items withholding</h4>
+                                    <h4>Actualmente posee los siguientes objetos</h4>
                                     <ul class="secondary">
                                         {#each getElementById($users, displayedUser.id).currentItemsIds as currentItemsId}
                                             <li
@@ -190,7 +190,7 @@
                                                         ).name}</CopyToClipboard
                                                     ></span
                                                 >
-                                                with the id
+                                                con la identificación
                                                 <strong
                                                     class="objects--special-copy"
                                                     ><CopyToClipboard

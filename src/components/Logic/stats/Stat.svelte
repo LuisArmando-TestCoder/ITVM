@@ -60,7 +60,7 @@
         if (!data || data.length === 0) return { labels: [], datasets: [] };
 
         const labels = data.map(item => item.name || item.id || "Unknown");
-        const inCounts = data.map(item => item.totalInMovements || 0);
+        const inCounts = data.map(item => item.total || 0);
 
         return {
             labels,

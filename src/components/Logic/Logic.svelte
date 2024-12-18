@@ -7,7 +7,7 @@
     import MoreDemandedItems from "./stats/MoreDemandedItems/MoreDemandedItems.svelte";
 </script>
 
-<h1>ITVM / Inventory Management</h1>
+<h1>ITVM / Gestión de inventario</h1>
 <p class="error">{$errorDisclaimer || ""}</p>
 <div class="container">
     <Items />

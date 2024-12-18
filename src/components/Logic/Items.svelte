@@ -56,7 +56,7 @@
         );
 
         // Format the date to a human-readable string
-        return adjustedDate.toLocaleString("en-EN", {
+        return adjustedDate.toLocaleString("es-ES", {
             timeZone: "UTC", // Keep time zone consistent with GMT offset
             dateStyle: "full",
             timeStyle: "short",
@@ -101,7 +101,7 @@
     <div class="search">
         <input
             type="text"
-            placeholder="Look for inventory items"
+            placeholder="Objeto a buscar (nombre, id, estado)"
             bind:this={inputElement}
             on:input={changeDisplayedObjects({
                 inputElement,
@@ -163,7 +163,7 @@
                             <li class="objects--list-item no-shadow">
                                 <ul>
                                     <li>
-                                        ID: <strong
+                                        Identificación: <strong
                                             class="objects--special-copy"
                                             ><CopyToClipboard
                                                 >{displayedItem.id}</CopyToClipboard
@@ -171,7 +171,7 @@
                                         >
                                     </li>
                                     <li>
-                                        Category: <strong
+                                        Categoría: <strong
                                             class="objects--special-copy"
                                             ><CopyToClipboard
                                                 >{displayedItem.category}</CopyToClipboard
@@ -179,7 +179,7 @@
                                         >
                                     </li>
                                     <li>
-                                        Price: <strong
+                                        Precio: <strong
                                             class="objects--special-copy"
                                             ><CopyToClipboard
                                                 >${displayedItem.price}</CopyToClipboard
@@ -207,7 +207,7 @@
                                                             ?.name}</CopyToClipboard
                                                     ></strong
                                                 >
-                                                with the id
+                                                con la identificación
                                                 <strong
                                                     class="objects--special-copy"
                                                     ><CopyToClipboard
@@ -222,17 +222,17 @@
                                                     ></strong
                                                 >
                                                 {movement.type === "in"
-                                                    ? "deposited"
-                                                    : "took"}
-                                                the item
+                                                    ? "depositó"
+                                                    : "se llevó"}
+                                                el objeto
                                                 {movement.type === "in"
-                                                    ? "into"
-                                                    : "from"}
-                                                the inventory at
+                                                    ? "en el"
+                                                    : "del"}
+                                                inventario, el día
                                                 {adjustIsoDateByGmt(
                                                     movement.time,
                                                     -6,
-                                                )}, in a
+                                                )},
                                                 <select
                                                     on:click|stopPropagation
                                                     on:change={(event) =>
@@ -263,7 +263,7 @@
                                                             >{value}</option
                                                         >
                                                     {/each}
-                                                </select> state
+                                                </select>
                                             </li>
                                         {/each}
                                     </ul>

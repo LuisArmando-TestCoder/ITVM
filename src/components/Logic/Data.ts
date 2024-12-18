@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 import type { Inventory, User } from "./types";
 
-export const states = ["nuevo", "regular", "dañado", "arreglado", "consumido", "desechado"] as const;
+export const states = ["nuevo", "arreglado", "dañado", "regular"] as const;
 
 export const categories = ["Herramienta", "Electrónico", "Educación"] as const;
 
@@ -108,7 +108,7 @@ export const inventory = writable<Inventory>({
             "name": "Juego de llaves de 10 piezas",
             "id": "3bd6e21c-7dbf-4fc4-80f2-2c30567ed378",
             "price": 40.0,
-            "state": "arreglado",
+            "state": "regular",
             // "quantity": 2,
             "movements": []
         },
@@ -135,7 +135,7 @@ export const inventory = writable<Inventory>({
             "name": "Tester o multímetro",
             "id": "86d58b9d-c437-45a6-9b93-61a6e03f17f4",
             "price": 40.0,
-            "state": "arreglado",
+            "state": "regular",
             // "quantity": 5,
             "movements": []
         },
@@ -153,7 +153,7 @@ export const inventory = writable<Inventory>({
             "name": "Pizarra blanca",
             "id": "fb49d2b2-bfa3-4232-a9db-568d1f617634",
             "price": 50.0,
-            "state": "arreglado",
+            "state": "regular",
             // "quantity": 6,
             "movements": []
         },
@@ -180,7 +180,7 @@ export const inventory = writable<Inventory>({
             "name": "Juego de brocas",
             "id": "d6f0899a-57df-4ea7-95d4-56c813f2207f",
             "price": 35.0,
-            "state": "arreglado",
+            "state": "regular",
             // "quantity": 4,
             "movements": []
         },

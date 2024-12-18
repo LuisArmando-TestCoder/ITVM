@@ -3,7 +3,7 @@ import type { Inventory, Item } from "../../types";
 export type ItemDemandStats = {
     id: string;
     name: string;
-    totalInMovements: number;
+    total: number;
 };
 
 export function getMoreDemandedItems(inventory: Inventory): ItemDemandStats[] {
@@ -12,11 +12,11 @@ export function getMoreDemandedItems(inventory: Inventory): ItemDemandStats[] {
         return {
             id,
             name,
-            totalInMovements: inMovementsCount,
+            total: inMovementsCount,
         };
     });
 
-    stats.sort((a, b) => b.totalInMovements - a.totalInMovements);
+    stats.sort((a, b) => b.total - a.total);
 
     return stats;
 }
